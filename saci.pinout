@@ -1,0 +1,34 @@
+//****************************************************************************** 
+//(c) 2023, 2024, 2025 Andre Reis - UFRGS - InPlace 
+//Module name : saci_pitanga
+//Description : pinout file form mapping saci_pitanga module 
+//              on a pitanga S-board
+//******************************************************************************/
+// Descrição : arquivo de pinagem contendo o mapeamento do módulo counter2b para
+//             a placa T (T-board).
+//  MODULE PORT     BOARD COMPONENT
+    clk         =   btn0;
+    rst         =   sw0;
+
+// Mapeamento dos bits de saída do contador para os LEDs
+    oEA[0]      =   led0;
+    oEA[1]      =   led1;
+    oEA[2]      =   led2;
+// Mapeamento dos bits de saída do decodificador para o display de 7 segmentos
+    oEndMem_7s[0]      =   segd0.g_on;
+    oEndMem_7s[1]      =   segd0.f_on;
+    oEndMem_7s[2]      =   segd0.e_on;
+    oEndMem_7s[3]      =   segd0.d_on;
+    oEndMem_7s[4]      =   segd0.c_on;
+    oEndMem_7s[5]      =   segd0.b_on;
+    oEndMem_7s[6]      =   segd0.a_on;
+    oEndMem_MS         =   segd0.dp_on;
+
+    oMem128_7s[0]      =   segd1.g_on;
+    oMem128_7s[1]      =   segd1.f_on;
+    oMem128_7s[2]      =   segd1.e_on;
+    oMem128_7s[3]      =   segd1.d_on;
+    oMem128_7s[4]      =   segd1.c_on;
+    oMem128_7s[5]      =   segd1.b_on;
+    oMem128_7s[6]      =   segd1.a_on;
+    
