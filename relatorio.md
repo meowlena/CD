@@ -129,7 +129,7 @@ O programa abaixo está implementado no módulo `rom_prog_pit` e é responsável
 
 Este é o código que o SACI executa por padrão, pois está gravado na ROM do módulo `rom_prog_pit`. Sempre que o processador é ligado ou resetado, ele inicia a execução a partir deste programa, já que a ROM é fixa e não pode ser alterada durante a operação normal.
 
-![Tabela do programa SACI](programa_saci.png)
+![Tabela do programa SACI](codigo_rom.png)
 
 Cada linha representa uma posição de memória da ROM, com a instrução ou dado correspondente. O programa segue a seguinte lógica:
 - Lê o valor 5 da posição 7
