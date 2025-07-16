@@ -73,6 +73,38 @@ O arquivo `pitanga.v` foi desenvolvido a partir do código base `saci_pitanga-ca
 
 Essas adaptações permitiram que o processador SACI fosse sintetizado e testado com sucesso na placa Pitanga, superando as limitações de entradas/saídas e garantindo a correta execução do programa de exemplo.
 
+## Validação e funcionamento do SACI
+
+### Simulação da máquina de estados (waveform)
+
+Abaixo está a simulação da waveform obtida no Quartus, mostrando o comportamento dos sinais principais e dos estados da máquina de estados (EA):
+
+![Simulação da waveform](waveform_saci.png)
+
+**Legenda dos estados (EA):**
+- `000`: lê operação (após reset, inicia em 000)
+- `001`: lê endereço imediato
+- `010`: LDA
+- `011`: ADD
+- `100`: STA
+
+O estado EA inicia em `000` após o reset, conforme esperado. A transição entre os estados pode ser observada na linha correspondente ao sinal `oEA` na simulação.
+
+### Programa gravado na ROM (rom_prog_pit)
+
+O programa abaixo está implementado no módulo `rom_prog_pit` e é responsável por somar dois valores (5 + 5) e armazenar o resultado na posição 128 da memória. A tabela mostra o conteúdo da ROM, com os endereços, instruções e comentários:
+
+Este é o código que o SACI executa por padrão, pois está gravado na ROM do módulo `rom_prog_pit`. Sempre que o processador é ligado ou resetado, ele inicia a execução a partir deste programa, já que a ROM é fixa e não pode ser alterada durante a operação normal.
+
+![Tabela do programa SACI](codigo_rom.png)
+
+Cada linha representa uma posição de memória da ROM, com a instrução ou dado correspondente. O programa segue a seguinte lógica:
+- Lê o valor 5 da posição 7
+- Soma 5 + 5
+- Armazena o resultado na posição 128
+- Finaliza com a instrução HLT
+
+
 ## Correções feitas na versão mais recente
 
 ### somador e full_adder
@@ -107,35 +139,3 @@ Como as maquinas de estado e as saidas moore e mealy tinham varios casos de test
 ### Implementação e testes do SACI na placa Pitanga
 O trabalho foi testado parcialmente na placa Pitanga e as partes mais complexas foram validadas no Quartus.
 Como a placa tinha poucas entradas, era difícil testar todos os casos diretamente no simulador. Quando o processador ficou totalmente pronto, o processo de compilação e síntese para a placa Pitanga apresentou alguns desafios, mas foi possível identificar e corrigir o erro no módulo reg3, permitindo o funcionamento correto do sistema.
-
-## Validação e funcionamento do SACI
-
-### Simulação da máquina de estados (waveform)
-
-Abaixo está a simulação da waveform obtida no Quartus, mostrando o comportamento dos sinais principais e dos estados da máquina de estados (EA):
-
-![Simulação da waveform](waveform_saci.png)
-
-**Legenda dos estados (EA):**
-- `000`: lê operação (após reset, inicia em 000)
-- `001`: lê endereço imediato
-- `010`: LDA
-- `011`: ADD
-- `100`: STA
-
-O estado EA inicia em `000` após o reset, conforme esperado. A transição entre os estados pode ser observada na linha correspondente ao sinal `oEA` na simulação.
-
-### Programa gravado na ROM (rom_prog_pit)
-
-O programa abaixo está implementado no módulo `rom_prog_pit` e é responsável por somar dois valores (5 + 5) e armazenar o resultado na posição 128 da memória. A tabela mostra o conteúdo da ROM, com os endereços, instruções e comentários:
-
-Este é o código que o SACI executa por padrão, pois está gravado na ROM do módulo `rom_prog_pit`. Sempre que o processador é ligado ou resetado, ele inicia a execução a partir deste programa, já que a ROM é fixa e não pode ser alterada durante a operação normal.
-
-![Tabela do programa SACI](codigo_rom.png)
-
-Cada linha representa uma posição de memória da ROM, com a instrução ou dado correspondente. O programa segue a seguinte lógica:
-- Lê o valor 5 da posição 7
-- Soma 5 + 5
-- Armazena o resultado na posição 128
-- Finaliza com a instrução HLT
-
