@@ -104,9 +104,11 @@ Estes módulos tinha algums errinhos na conversão do assign pra portas lógicas
 ### Verificar as saidas da maquina de estados
 Como as maquinas de estado e as saidas moore e mealy tinham varios casos de teste, acabou sendo bem facil algum valor errado passar desapercebido.
 
-### Transportar o SACI do Quartus pra placa Pitanga
-O trabalho foi testado partes na placa pitanga e partes mais complexas no quartus. 
-Como a placa tinha poucas entradas, ficava dificil testar. Quando ficou o processador todo pronto, fazer ele compilar e sintetizar na Pitanga foi um pouco complexo, mas deu pra identificar o erro no modulo reg3 e consertar.
+### Implementação e testes do SACI na placa Pitanga
+O trabalho foi testado parcialmente na placa Pitanga e as partes mais complexas foram validadas no Quartus.
+Como a placa tinha poucas entradas, era difícil testar todos os casos diretamente no simulador. Quando o processador ficou totalmente pronto, o processo de compilação e síntese para a placa Pitanga apresentou alguns desafios, mas foi possível identificar e corrigir o erro no módulo reg3, permitindo o funcionamento correto do sistema.
+
+## Validação e funcionamento do SACI
 
 ### Simulação da máquina de estados (waveform)
 
@@ -123,7 +125,7 @@ Abaixo está a simulação da waveform obtida no Quartus, mostrando o comportame
 
 O estado EA inicia em `000` após o reset, conforme esperado. A transição entre os estados pode ser observada na linha correspondente ao sinal `oEA` na simulação.
 
-## Programa gravado na ROM (rom_prog_pit)
+### Programa gravado na ROM (rom_prog_pit)
 
 O programa abaixo está implementado no módulo `rom_prog_pit` e é responsável por somar dois valores (5 + 5) e armazenar o resultado na posição 128 da memória. A tabela mostra o conteúdo da ROM, com os endereços, instruções e comentários:
 
